@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>訂單查詢</title>
+</head>
+<body>
+  <h1>訂單 <%= order.orderId %></h1>
+  <form action="/linePay/<%= order.orderId %>">
+    <p>幣別: <%= order.currency %></p>
+    <p>金額: <%= order.amount %></p>
+    <ul>
+      <% order.packages.forEach(function(item) { %>
+        <li>商品ID: <%= item.id %></li>
+        <li>商品金額: <%= item.amount %></li>
+        <li>詳細內容: <% item.products.forEach(function(detail) { %> <%= detail.name %> <%= detail.quantity %> <%= detail.price %> <% }); %></li>
+      <% }); %>
+    </ul>
+    
+    <input type="submit" value="付款確認">
+  </form>
+</body>
+</html>

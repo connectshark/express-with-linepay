@@ -12,9 +12,12 @@ app.use(cors(corsOptions))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
+app.set('view engine', 'ejs')
 app.use('/', express.static(path.join(__dirname, '/public')));
 
 app.use('/', require('./routes/root'))
+app.use('/order', require('./routes/order'))
+app.use('/linePay', require('./routes/linePay'))
 
 app.all('*', (req, res) => {
   res.status(404);
