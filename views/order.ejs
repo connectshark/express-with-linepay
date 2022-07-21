@@ -4,22 +4,27 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
   <title>訂單查詢</title>
 </head>
-<body>
-  <h1>訂單 <%= order.orderId %></h1>
-  <form action="/linePay/<%= order.orderId %>">
-    <p>幣別: <%= order.currency %></p>
-    <p>金額: <%= order.amount %></p>
-    <ul>
-      <% order.packages.forEach(function(item) { %>
-        <li>商品ID: <%= item.id %></li>
-        <li>商品金額: <%= item.amount %></li>
-        <li>詳細內容: <% item.products.forEach(function(detail) { %> <%= detail.name %> <%= detail.quantity %> <%= detail.price %> <% }); %></li>
-      <% }); %>
-    </ul>
-    
-    <input type="submit" value="付款確認">
-  </form>
+<body class=" bg-gray-900 text-white font-mono">
+  <div class=" w-5/6 mx-auto pt-32">
+    <h1 class=" text-3xl font-bold">訂單資訊<%= orderIndex %></h1>
+    <form action="/linePay/create/<%= orderIndex %>" method="post">
+      <p>幣別: <%= order.currency %></p>
+      <p>金額: <%= order.amount %></p>
+      <ul>
+        <% order.packages.forEach(function(item) { %>
+          <li>商品ID: <%= item.id %></li>
+          <li>商品金額: <%= item.amount %></li>
+          <li>詳細內容: <% item.products.forEach(function(detail) { %> <%= detail.name %> <%= detail.quantity %> <%= detail.price %> <% }); %></li>
+        <% }); %>
+      </ul>
+      
+      <input type="submit" value="付款測試" class=" bg-sky-600 py-4 px-8 rounded-xl cursor-pointer hover:opacity-80">
+      <a class="bg-amber-600 py-4 px-8 rounded-xl cursor-pointer hover:opacity-80" href="/order">回訂單列表</a>
+    </form>
+  </div>
+  
 </body>
 </html>

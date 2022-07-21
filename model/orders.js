@@ -1,8 +1,7 @@
 const orders = {
-  1: {
+  3: {
     amount: 3000,
     currency: 'TWD',
-    orderId: 30,
     packages: [
       {
         id: 'coat_1',
@@ -20,7 +19,6 @@ const orders = {
   2: {
     amount: 500,
     currency: 'TWD',
-    orderId: 31,
     packages: [
       {
         id: 'pen',

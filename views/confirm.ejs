@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <title>訂單確認</title>
+</head>
+<body class="bg-gray-900 font-mono min-h-screen text-white pt-40 leading-loose">
+  <div class=" w-2/3 mx-auto">
+    <h1 class=" text-4xl">訂單付款完成</h1>
+    <p>訂單編號: <%= orderId %></p>
+    <p>付款交易編號: <%= transactionId %></p>
+    <p class="pt-20"><a class="bg-amber-600 py-4 px-8 rounded-xl cursor-pointer hover:opacity-80" href="/">回首頁</a></p>
+  </div>
+</body>
+</html>

@@ -3,6 +3,7 @@ const router = express.Router()
 const linePayHandler = require('../controller/linePayController')
 
 router
-  .post('/create/:orderId', linePayHandler.createLinePayOrder)
+  .post('/create/:orderIndex', linePayHandler.createLinePayOrder)
+  .get('/confirm', linePayHandler.confirmOrder)
 
 module.exports = router
