@@ -11,6 +11,7 @@ const fetch = require('node-fetch')
 const orderList = require('../model/orders')
 const HamcSHA256 = require('crypto-js/hmac-sha256')
 const Base64 = require('crypto-js/enc-base64')
+const path = require('path')
 
 const orders = {}
 
@@ -43,10 +44,10 @@ const createLinePayOrder = async (req, res) => {
     if (response.returnCode === '0000') {
       res.redirect(response.info.paymentUrl.web)
     } else {
-      res.render('error')
+      res.sendFile(path.join(__dirname, '..', 'views', 'error.html'))
     }
   } catch (error) {
-    res.render('error')
+    res.sendFile(path.join(__dirname, '..', 'views', 'error.html'))
   }
 }
 
@@ -81,12 +82,12 @@ const confirmOrder = async ( req, res ) => {
     }
     
   } catch (error) {
-    res.render('error')
+    res.sendFile(path.join(__dirname, '..', 'views', 'error.html'))
   }
 }
 
 const cancelOrder = ( req, res ) => {
-  res.render('error')
+  res.sendFile(path.join(__dirname, '..', 'views', 'error.html'))
 }
 
 const createNonce = () => parseInt(new Date().getTime() / 1000)
