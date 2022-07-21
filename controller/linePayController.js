@@ -43,13 +43,11 @@ const createLinePayOrder = async (req, res) => {
     if (response.returnCode === '0000') {
       res.redirect(response.info.paymentUrl.web)
     } else {
-      res.send('error')
+      res.render('error')
     }
   } catch (error) {
-    console.log(error)
+    res.render('error')
   }
-  
-  res.end()
 }
 
 const confirmOrder = async ( req, res ) => {
@@ -83,9 +81,12 @@ const confirmOrder = async ( req, res ) => {
     }
     
   } catch (error) {
-    console.log(error)
-    res.end()
+    res.render('error')
   }
+}
+
+const cancelOrder = ( req, res ) => {
+  res.render('error')
 }
 
 const createNonce = () => parseInt(new Date().getTime() / 1000)
@@ -101,7 +102,9 @@ const createHeader = (uri, linePayBody, nonce) => {
   }
 }
 
+
 module.exports = {
   createLinePayOrder,
-  confirmOrder
+  confirmOrder,
+  cancelOrder
 }
