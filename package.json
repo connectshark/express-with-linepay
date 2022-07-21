@@ -1,14 +1,14 @@
 {
-  "name": "express-server",
+  "name": "express-with-linepay",
   "version": "1.0.0",
-  "description": "express server with simple routes",
+  "description": "express with linepay",
   "main": "server.js",
   "scripts": {
     "start": "node server",
     "dev": "nodemon server"
   },
   "author": "Chambers",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
