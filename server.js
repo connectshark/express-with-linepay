@@ -18,6 +18,9 @@ app.use('/', express.static(path.join(__dirname, '/public')));
 app.use('/', require('./routes/root'))
 app.use('/order', require('./routes/order'))
 app.use('/linePay', require('./routes/linePay'))
+app.get('/healthz', (req, res) => {
+  res.status(200).send('ok')
+})
 
 app.all('*', (req, res) => {
   res.status(404);
