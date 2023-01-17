@@ -7,11 +7,9 @@ const {
   LINEPAY_RETURN_CONFIRM_URL,
   LINEPAY_RETURN_CANCEL_URL
 } = process.env
-const fetch = require('node-fetch')
 const orderList = require('../model/orders')
-const HamcSHA256 = require('crypto-js/hmac-sha256')
-const Base64 = require('crypto-js/enc-base64')
 const path = require('path')
+const { createHmac } = require('crypto')
 
 const orders = {}
 
@@ -94,7 +92,7 @@ const createNonce = () => parseInt(new Date().getTime() / 1000)
 
 const createHeader = (uri, linePayBody, nonce) => {
   const string = `${LINEPAY_CHANNEL_SECRET}/${LINEPAY_VERSION}${uri}${JSON.stringify(linePayBody)}${nonce}`
-  const signature = Base64.stringify(HamcSHA256(string, LINEPAY_CHANNEL_SECRET))
+  const signature = createHmac('sha256', LINEPAY_CHANNEL_SECRET).update(string).digest('base64')
   return {
     'Content-Type': 'application/json',
     'X-LINE-ChannelId': LINEPAY_CHANNEL_ID,
